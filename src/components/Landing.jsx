@@ -13,7 +13,7 @@ function Landing() {
           <div className="main-content text-left">
             <header>
               <h2>
-                Do not remember just <span>NOTE IT!!!</span>
+                Do not remember just <span>NOTE IT UP!!!</span>
               </h2>
               <h3>Get your notes, workflow organized in a simple way.</h3>
             </header>
