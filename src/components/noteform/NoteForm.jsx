@@ -1,4 +1,5 @@
 import React from "react";
+// import Modal from "react-modal";
 import {
   MdOutlineColorLens,
   MdOutlineArchive,
@@ -6,14 +7,27 @@ import {
 } from "react-icons/md";
 function NoteForm() {
   return (
-    <div className="note-editor">
-      <div className="note-editor-title">
-        <input type="text" className="input title-input" placeholder="Title"/>
-      </div>
-      <div className="note-editor-desc">
-        <textarea name="" id="" cols="30" rows="5" className="input desc-input" placeholder="Take a note..."></textarea>
-      </div>
-      <div className="notes-editor-footer">
+    <>
+    {/* <Modal isOpen={true}></Modal> */}
+      <div className="note-editor">
+        <div className="note-editor-title">
+          <input
+            type="text"
+            className="input title-input"
+            placeholder="Title"
+          />
+        </div>
+        <div className="note-editor-desc">
+          <textarea
+            name=""
+            id=""
+            cols="30"
+            rows="5"
+            className="input desc-input"
+            placeholder="Take a note..."
+          ></textarea>
+        </div>
+        <div className="notes-editor-footer">
           <div className="notes-footer-icons">
             <button class="btn primary-btn btn-icon">
               <MdOutlineColorLens />
@@ -26,10 +40,12 @@ function NoteForm() {
             </button>
           </div>
           <div className="notes-footer-btn">
-              <button className="btn btn-s">Cancel</button><button className="btn btn-s">Add</button>
+            <button className="btn btn-s">Cancel</button>
+            <button className="btn btn-s">Add</button>
           </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
