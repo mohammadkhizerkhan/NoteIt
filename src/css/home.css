@@ -1,0 +1,137 @@
+.navbar{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.logo{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.home-cont{
+    display: flex;
+    flex-direction: row;
+}
+
+.aside-cont{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+}
+.main-cont{
+    width: 80%;
+    max-width: 45rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-item {
+    margin: 6px 0 0 5px;
+}
+
+.list-stack{
+    max-width: 100%;
+}
+
+
+.list-item{
+    width: 100%;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.list-item:hover{
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+.list-item span{
+    margin-left: 10px;
+}
+
+
+.input-icons {
+    width: 100%;
+    position: relative;
+}
+
+.icon-cont{
+    position: absolute;
+    top: 15px;
+    transition: 0.3s;
+    color: #373737;
+    border-right: 1px solid #E6E6E6;
+    width: 45px;
+    height: 25px;
+}
+  
+.icon {
+    padding: 10px;
+    width: 45px;
+    height: 45px;
+    margin: 0;
+}
+  
+.input-field {
+    width: 100%;
+    border: 1px solid #E6E6E6;
+    margin: 8px 0;
+    outline: none;
+    padding: 8px 0px 8px 50px;
+    transition: 0.3s;
+}
+
+.note-editor{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid rgb(199, 198, 198);
+    border-radius: 6px;
+}
+
+.note-editor:hover{
+    box-shadow: 0px 2px 2px rgba(154, 154, 154, 0.8);
+}
+
+.note-editor:hover>.notes-footer{
+    opacity: 1;
+    transition: all 0.8s;
+}
+
+.notes-footer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    opacity: 0;
+}
+
+
+  
+.notes-footer-icons{
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.btn-icon{
+    margin: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: white;
+    color: var(--dark-text-color);
+}
+.btn-icon:hover{
+    color: var(--dark-text-color);
+    background-color: #cacaca;
+}

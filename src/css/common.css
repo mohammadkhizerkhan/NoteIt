@@ -1,0 +1,26 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --primary-color:#6BB7FF;
+    --secondary-color:#128cff;
+    --text-color:#fafdff;
+    --dark-text-color:#1a1a1a;
+}
+
+html{
+    font-size: 100%;
+}
+
+.btn{
+    margin: 10px 0;
+    color: var(--text-color);
+    background-color: var(--primary-color);
+}
+
+.btn:hover{
+    background-color: var(--primary-color)
+}
