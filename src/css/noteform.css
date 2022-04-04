@@ -1,0 +1,23 @@
+.note-editor{
+    width: 100%;
+    background-color: aliceblue;
+    padding: 1.5rem;
+}
+
+.title-input,.desc-input{
+    width: 100%;
+    margin: 5px 0;
+    border: 0px;
+}
+
+.notes-editor-footer{
+    display: flex;
+    justify-content: space-around;
+}
+
+.notes-footer-btn{
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
