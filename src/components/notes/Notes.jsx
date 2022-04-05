@@ -5,18 +5,25 @@ import {
   MdOutlineArchive,
   MdOutlineLabel,
 } from "react-icons/md";
+import {useNote} from "../../context/NoteContext"
+
 
 function Notes() {
+  const {notes} =useNote();
+  console.log(notes)
     return (
-        <div class="note">
+      <>
+      {
+        notes.map(note=>{
+          const {title,desc,id}=note;
+          return(
+          <div class="note" key={id}>
             <div class="title-div">
-              <h3>This will be Title</h3>
+              <h3>{title}</h3>
             </div>
             <div class="note-desc-div text-left">
               <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Pariatur blanditiis sapiente incidunt unde similique commodi
-                soluta reprehenderit sequi vero quia.
+                {desc}
               </p>
             </div>
             <div className="notes-footer">
@@ -37,6 +44,10 @@ function Notes() {
               </div>
             </div>
           </div>
+          )
+        })
+      }
+      </>
     )
 }
 

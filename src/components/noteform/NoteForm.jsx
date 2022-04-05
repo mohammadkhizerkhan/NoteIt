@@ -7,7 +7,7 @@ import {
 import {useNote} from "../../context/NoteContext"
 
 function NoteForm({closeForm}) {
-  const {noteInput,changeHandler} = useNote();
+  const {noteInput,changeHandler,submitNote} = useNote();
   
   return (
     <>
@@ -48,7 +48,7 @@ function NoteForm({closeForm}) {
           </div>
           <div className="notes-footer-btn">
             <button className="btn btn-s" onClick={closeForm}>Cancel</button>
-            <button className="btn btn-s" >Add</button>
+            <button className="btn btn-s" onClick={submitNote}>Add</button>
           </div>
         </div>
       </div>
