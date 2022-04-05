@@ -5,11 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import "../src/css/final.css"
+import { NoteProvider } from './context/NoteContext';
 ReactDOM.render(
 
   <React.StrictMode>
     <BrowserRouter>
+    <NoteProvider>
     <App />
+    </NoteProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

@@ -1,8 +1,11 @@
 import React from 'react'
 import {Link} from "react-router-dom"
-
+import {useNote} from "../../context/NoteContext"
+import NoteForm from '../noteform/NoteForm';
 function SideBar() {
+  const {isFormOpen,setIsFormOpen} =useNote();
     return (
+      <>
         <aside class="aside-cont">
           <ul class="list list-stack">
             <Link to="/Home">
@@ -111,10 +114,12 @@ function SideBar() {
             </li>
             </Link>
           </ul>
-          <Link to="/AddNote">
-          <button class="btn btn-m btn-item">Create New Note</button>
-          </Link>
+          <button class="btn btn-m btn-item" onClick={()=>setIsFormOpen(true)}>Create New Note</button>
         </aside>
+        {
+          isFormOpen && <NoteForm closeForm={()=>setIsFormOpen(false)}/>
+        }
+      </>
     )
 }
 

@@ -2,7 +2,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Landing from "./components/Landing";
 import Home from "./components/Home";
-import { Notes, Search,Labels, Trash, Archive, Profile, NoteForm } from "./components";
+import { Notes, Search,Labels, Trash, Archive, Profile } from "./components";
 
 function App() {
   return (
@@ -15,7 +15,6 @@ function App() {
           <Route path="/Trash" element={<Trash />} />
           <Route path="/Archive" element={<Archive />} />
           <Route path="/Profile" element={<Profile />} />
-          <Route path="/AddNote" element={<NoteForm />} />
         </Route>
       </Routes>
     </div>
