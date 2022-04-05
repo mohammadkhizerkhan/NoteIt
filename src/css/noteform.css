@@ -1,0 +1,41 @@
+.note-editor{
+    width: 100%;
+    max-width: 60%;
+    background-color:rgb(211 235 255);
+    border-radius: 5px;
+    padding: 1.5rem;
+    position: fixed;
+    z-index: 4;
+    left: 22rem;
+}
+
+.title-input,.desc-input{
+    width: 100%;
+    margin: 5px 0;
+    border: 0px;
+}
+
+.notes-editor-footer{
+    display: flex;
+    justify-content: space-around;
+}
+
+.notes-footer-btn{
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.overlay{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.notesForm-overlay{
+    background-color:rgb(200 222 255 / 0.3) ;
+    z-index: 3;
+}
