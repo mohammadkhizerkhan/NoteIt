@@ -1,6 +1,7 @@
-import { createContext, useContext,useState,useEffect} from "react";
+import { createContext, useContext,useState,useEffect,useReducer} from "react";
 import { colRef } from "../firebase/config";
 import { addDoc,onSnapshot, query } from "firebase/firestore";
+import {NoteReducer} from "../reducer/reducer"
 
 const defaultValue={}
 const NoteContext=createContext(defaultValue)
@@ -16,12 +17,12 @@ const NoteProvider=({children})=>{
     })
     const [notes,setNotes]=useState([])
 
+
     const changeHandler=(e)=>{
         const name=e.target.name;
         const value=e.target.value;
         setNoteInput((prev)=>({...prev,[name]:value}))
     }
-
     const submitNote=()=>{
         addDoc(colRef,{
             title:noteInput.title,
@@ -39,7 +40,8 @@ const NoteProvider=({children})=>{
         })
         setIsFormOpen(false)
     }
-    console.log(notes)
+
+    const [noteState, noteDispatch] = useReducer(NoteReducer,noteInput)
 
     useEffect(() => {
         const q=query(colRef);
@@ -56,7 +58,7 @@ const NoteProvider=({children})=>{
     
     return (
         <>
-        <NoteContext.Provider value={{isFormOpen,setIsFormOpen,noteInput,changeHandler,notes,submitNote}}>
+        <NoteContext.Provider value={{isFormOpen,setIsFormOpen,noteInput,changeHandler,notes,submitNote,noteDispatch}}>
             {children}
         </NoteContext.Provider>
         </>
