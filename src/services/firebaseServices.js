@@ -7,7 +7,6 @@ const updatePin=async(note)=>{
     try {
         await updateDoc(doc(db,"notes",note.id),{
             isPinned:!note.isPinned,
-            // isArchive:!note.isArchive
         })
     } catch (error) {
         console.log("error from updatePin",error)
