@@ -11,8 +11,8 @@ import NoteForm from '../noteform/NoteForm';
 
 function Note({note}) {
     const [isFormOpen, setIsFormOpen] = useState(false);
-    console.log(note)
     const { title, desc, id,isPinned } = note;
+    
     return (
             <div class="note" key={id} onClick={() => setIsFormOpen(true)}>
             <button class="btn primary-btn btn-icon pin-icon" onClick={()=>updatePin(note)}>
@@ -42,12 +42,6 @@ function Note({note}) {
                   >
                   <RiDeleteBin6Line />
                 </button>
-                {/* <button
-                  class="btn primary-btn btn-icon"
-                  onClick={() => setIsFormOpen(true)}
-                  >
-                  edit
-                </button> */}
               </div>
             </div>
             {

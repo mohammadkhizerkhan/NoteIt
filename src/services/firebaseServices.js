@@ -5,13 +5,13 @@ import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 
 
 const addNote=()=>{
-    addDoc(colRef,{
-        title:noteInput.title,
-        desc:noteInput.desc,
-        isPinned:noteInput.isPinned,
-        isArchive:noteInput.isArchive,
-        isTrash:noteInput.isTrash
-    })
+    // addDoc(colRef,{
+    //     title:noteInput.title,
+    //     desc:noteInput.desc,
+    //     isPinned:noteInput.isPinned,
+    //     isArchive:noteInput.isArchive,
+    //     isTrash:noteInput.isTrash
+    // })
 }
 
 const updateNote=(note)=>{

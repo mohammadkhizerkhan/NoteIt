@@ -1,20 +1,46 @@
-import React,{useEffect} from "react";
+import React, { useEffect,useState } from "react";
+
 import {
   MdOutlineColorLens,
   MdOutlineArchive,
   MdOutlineLabel,
 } from "react-icons/md";
-import {useNote} from "../../context/NoteContext"
+import { addNote, updateNote } from "../../services/firebaseServices";
 
-function NoteForm({closeForm,editNoteData,edit}) {
-  const {noteInput,changeHandler,submitNote,setNoteInput} = useNote();
-  console.log(editNoteData)
-  
+function NoteForm({ closeForm, editNoteData, edit }) {
+  console.log(editNoteData);
+  const [noteInput, setNoteInput] = useState({
+    title: "",
+    desc: "",
+    isPinned: false,
+    isArchive: false,
+    isTrash: false,
+  });
+
+  const changeHandler=(e)=>{
+    const name=e.target.name;
+    const value=e.target.value;
+    setNoteInput((prev)=>({...prev,[name]:value}))
+}
+
+  const submitNote = () => {
+    // edit?updateNote:addNote;
+    setNoteInput({
+      title: "",
+      desc: "",
+      isPinned: false,
+      isArchive: false,
+      isTrash: false,
+    });
+    closeForm();
+  };
+
   useEffect(() => {
-    if(edit){
-      setNoteInput(editNoteData)
+    if (edit) {
+      setNoteInput(editNoteData);
     }
-  }, [])
+  }, []);
+
   return (
     <>
       <div className="note-editor">
@@ -53,8 +79,12 @@ function NoteForm({closeForm,editNoteData,edit}) {
             </button>
           </div>
           <div className="notes-footer-btn">
-            <button className="btn btn-s" onClick={closeForm}>Cancel</button>
-            <button className="btn btn-s" onClick={submitNote}>Add</button>
+            <button className="btn btn-s" onClick={closeForm}>
+              Cancel
+            </button>
+            <button className="btn btn-s" onClick={()=>submitNote}>
+              {edit ? "update" : "Add"}
+            </button>
           </div>
         </div>
       </div>
