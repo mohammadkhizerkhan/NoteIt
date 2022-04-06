@@ -5,20 +5,67 @@ import {
   MdOutlineArchive,
   MdOutlineLabel,
 } from "react-icons/md";
+import { BsPin,BsPinFill } from "react-icons/bs";
 import { useNote } from "../../context/NoteContext";
-import { ACTION } from "../../store/constant";
-import {updateTrash,updateArchive} from "../../services/firebaseServices"
+import {updateTrash,updateArchive,updatePin} from "../../services/firebaseServices"
 
 function Notes() {
-  const { notes,noteDispatch } = useNote();
+  const { notes } = useNote();
+  const pinnedNotes=notes.filter(item=>item.isPinned && !item.isTrash && !item.isArchive)
+  const notpinnedNotes=notes.filter(item=>!item.isPinned && !item.isTrash && !item.isArchive)
+  console.log(pinnedNotes)
+  
   return (
     <>
     <h3>home</h3>
-      {notes.map((note) => {
+    {pinnedNotes.length>0 && <h4>Pinned notes</h4>}
+      {pinnedNotes.map((note) => {
         const { title, desc, id } = note;
         return (
-          (!note.isTrash && !note.isArchive) &&(
+          <>
           <div class="note" key={id}>
+            <button class="btn primary-btn btn-icon pin-icon" onClick={()=>updatePin(note)}>
+                  <BsPinFill />
+            </button>
+            <div class="title-div">
+              <h3>{title}</h3>
+            </div>
+            <div class="note-desc-div text-left">
+              <p>{desc}</p>
+            </div>
+            <div className="notes-footer">
+              <div className="date">Created on 06/11/20201</div>
+              <div className="notes-footer-icons">
+                <button class="btn primary-btn btn-icon">
+                  <MdOutlineColorLens />
+                </button>
+                <button class="btn primary-btn btn-icon">
+                  <MdOutlineLabel />
+                </button>
+                <button class="btn primary-btn btn-icon">
+                  <MdOutlineArchive onClick={()=>updateArchive(note)}/>
+                </button>
+                <button
+                  class="btn primary-btn btn-icon"
+                  onClick={() => updateTrash(note)}
+                  >
+                  <RiDeleteBin6Line />
+                </button>
+              </div>
+            </div>
+          </div>
+          </>
+        );
+      })}
+      {notpinnedNotes.length>0 && <h4>unpinned notes</h4>}
+      {notpinnedNotes.map((note) => {
+        const { title, desc, id } = note;
+        return (
+          <>
+          <div class="note" key={id}>
+            <button class="btn primary-btn btn-icon pin-icon" onClick={()=>updatePin(note)}>
+                  <BsPin/>
+            </button>
             <div class="title-div">
               <h3>{title}</h3>
             </div>
@@ -46,7 +93,7 @@ function Notes() {
               </div>
             </div>
           </div>
-        )
+          </>
         );
       })}
     </>

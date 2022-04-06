@@ -7,17 +7,21 @@ import {
   MdOutlineRestoreFromTrash
 } from "react-icons/md";
 import {useNote} from "../../context/NoteContext"
-import {updateArchive,updateTrash} from "../../services/firebaseServices"
+import { BsPin,BsPinFill } from "react-icons/bs";
+import {updateArchive,updateTrash,updatePin} from "../../services/firebaseServices"
 function Archive() {
     const {notes} = useNote();
     return (
         <>
-            <h2>archive</h2>
+        <h2>archive</h2>
         {notes.map((note) => {
         const { title, desc, id } = note;
         return (
           (note.isArchive && !note.isTrash) && (
             <div class="note" key={id}>
+              <button class="btn primary-btn btn-icon pin-icon" onClick={()=>updatePin(note)}>
+                  <BsPinFill />
+              </button>
               <div class="title-div">
                 <h3>{title}</h3>
               </div>
