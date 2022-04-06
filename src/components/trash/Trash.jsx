@@ -1,17 +1,17 @@
 import React from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import {
-  MdOutlineColorLens,
-  MdOutlineArchive,
-  MdOutlineLabel,
+  MdOutlineDeleteForever,
+  MdOutlineRestoreFromTrash
 } from "react-icons/md";
-import { ACTION } from "../../store/constant";
 import { useNote } from "../../context/NoteContext";
+import { deleteNote, updateTrash } from "../../services/firebaseServices";
 
 function Trash() {
-  const { notes,noteDispatch } = useNote();
+  const { notes } = useNote();
   return (
     <>
+    <h3>trash</h3>
       {notes.map((note) => {
         const { title, desc, id } = note;
         return (
@@ -24,22 +24,18 @@ function Trash() {
                 <p>{desc}</p>
               </div>
               <div className="notes-footer">
-                <div className="date">Created on 06/11/20201</div>
                 <div className="notes-footer-icons">
-                  <button class="btn primary-btn btn-icon">
-                    <MdOutlineColorLens />
-                  </button>
-                  <button class="btn primary-btn btn-icon">
-                    <MdOutlineLabel />
-                  </button>
-                  <button class="btn primary-btn btn-icon">
-                    <MdOutlineArchive />
+                  <button
+                    class="btn primary-btn btn-icon"
+                    onClick={()=>deleteNote(note.id)}
+                  >
+                    <MdOutlineDeleteForever />
                   </button>
                   <button
                     class="btn primary-btn btn-icon"
-                    onClick={() => noteDispatch({type:ACTION.TRASH_DOC,payload:note})}
+                    onClick={() => updateTrash(note)}
                   >
-                    <RiDeleteBin6Line />
+                    <MdOutlineRestoreFromTrash />
                   </button>
                 </div>
               </div>

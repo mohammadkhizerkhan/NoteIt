@@ -7,11 +7,13 @@ import {
 } from "react-icons/md";
 import { useNote } from "../../context/NoteContext";
 import { ACTION } from "../../store/constant";
+import {updateTrash,updateArchive} from "../../services/firebaseServices"
 
 function Notes() {
   const { notes,noteDispatch } = useNote();
   return (
     <>
+    <h3>home</h3>
       {notes.map((note) => {
         const { title, desc, id } = note;
         return (
@@ -33,11 +35,11 @@ function Notes() {
                   <MdOutlineLabel />
                 </button>
                 <button class="btn primary-btn btn-icon">
-                  <MdOutlineArchive />
+                  <MdOutlineArchive onClick={()=>updateArchive(note)}/>
                 </button>
                 <button
                   class="btn primary-btn btn-icon"
-                  onClick={() => noteDispatch({type:ACTION.TRASH_DOC,payload:note})}
+                  onClick={() => updateTrash(note)}
                 >
                   <RiDeleteBin6Line />
                 </button>
