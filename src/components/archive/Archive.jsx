@@ -8,7 +8,7 @@ import {
 } from "react-icons/md";
 import {useNote} from "../../context/NoteContext"
 import { BsPin,BsPinFill } from "react-icons/bs";
-import {updateArchive,updateTrash,updatePin} from "../../services/firebaseServices"
+import {updateArchive,updateTrash,updatePin,updateArchivePin} from "../../services/firebaseServices"
 function Archive() {
     const {notes} = useNote();
     return (
@@ -17,10 +17,10 @@ function Archive() {
         {notes.map((note) => {
         const { title, desc, id } = note;
         return (
-          (note.isArchive && !note.isTrash) && (
+          (note.isArchive && !note.isTrash ) && (
             <div class="note" key={id}>
-              <button class="btn primary-btn btn-icon pin-icon" onClick={()=>updatePin(note)}>
-                  <BsPinFill />
+              <button class="btn primary-btn btn-icon pin-icon" onClick={()=>updateArchivePin(note)}>
+                  <BsPin />
               </button>
               <div class="title-div">
                 <h3>{title}</h3>

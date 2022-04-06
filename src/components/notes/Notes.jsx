@@ -7,13 +7,14 @@ import {
 } from "react-icons/md";
 import { BsPin,BsPinFill } from "react-icons/bs";
 import { useNote } from "../../context/NoteContext";
-import {updateTrash,updateArchive,updatePin} from "../../services/firebaseServices"
+import {updateTrash,updateArchive,updatePin,updatePinnedArchive} from "../../services/firebaseServices"
 
 function Notes() {
   const { notes } = useNote();
   const pinnedNotes=notes.filter(item=>item.isPinned && !item.isTrash && !item.isArchive)
   const notpinnedNotes=notes.filter(item=>!item.isPinned && !item.isTrash && !item.isArchive)
   console.log(pinnedNotes)
+
   
   return (
     <>
@@ -43,7 +44,7 @@ function Notes() {
                   <MdOutlineLabel />
                 </button>
                 <button class="btn primary-btn btn-icon">
-                  <MdOutlineArchive onClick={()=>updateArchive(note)}/>
+                  <MdOutlineArchive onClick={()=>updatePinnedArchive(note)}/>
                 </button>
                 <button
                   class="btn primary-btn btn-icon"
