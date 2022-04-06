@@ -13,7 +13,6 @@ function Notes() {
   const { notes } = useNote();
   const pinnedNotes=notes.filter(item=>item.isPinned && !item.isTrash && !item.isArchive)
   const notpinnedNotes=notes.filter(item=>!item.isPinned && !item.isTrash && !item.isArchive)
-  console.log(pinnedNotes)
 
   
   return (
