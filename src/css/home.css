@@ -101,6 +101,7 @@
 
 
 .note{
+    position: relative;
     width: 100%;
     margin-bottom: 10px;
     padding: 10px;
@@ -147,4 +148,10 @@
 .btn-icon:hover{
     color: var(--dark-text-color);
     background-color: #cacaca;
+}
+
+.pin-icon{
+    position: absolute;
+    top: 5px;
+    right: 0;
 }
