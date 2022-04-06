@@ -1,5 +1,35 @@
 import { db } from "../firebase/config";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+// import { addDoc} from "firebase/firestore";
+// import { colRef } from "../../firebase/config";
+
+
+const addNote=()=>{
+    addDoc(colRef,{
+        title:noteInput.title,
+        desc:noteInput.desc,
+        isPinned:noteInput.isPinned,
+        isArchive:noteInput.isArchive,
+        isTrash:noteInput.isTrash
+    })
+}
+
+const updateNote=(note)=>{
+    // updateDoc(doc(db,"notes",note.id),{
+    //     title:note.title,
+    //     desc:note.desc,
+    //     isPinned:note.isPinned,
+    //     isArchive:note.isArchive,
+    //     isTrash:note.isTrash
+    // })
+    // setNoteInput({
+    //     title:"",
+    //     desc:"",
+    //     isPinned:false,
+    //     isArchive:false,
+    //     isTrash:false
+    // })
+}
 
 
 
@@ -62,4 +92,4 @@ const deleteNote=async(id)=>{
     }
 }
 
-export {updateTrash,deleteNote,updateArchive,updatePin,updatePinnedArchive,updateArchivePin}
+export {addNote,updateNote,updateTrash,deleteNote,updateArchive,updatePin,updatePinnedArchive,updateArchivePin}
