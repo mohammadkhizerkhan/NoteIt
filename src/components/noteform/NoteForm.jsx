@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import {
   MdOutlineColorLens,
   MdOutlineArchive,
@@ -6,9 +6,15 @@ import {
 } from "react-icons/md";
 import {useNote} from "../../context/NoteContext"
 
-function NoteForm({closeForm}) {
-  const {noteInput,changeHandler,submitNote} = useNote();
+function NoteForm({closeForm,editNoteData,edit}) {
+  const {noteInput,changeHandler,submitNote,setNoteInput} = useNote();
+  console.log(editNoteData)
   
+  useEffect(() => {
+    if(edit){
+      setNoteInput(editNoteData)
+    }
+  }, [])
   return (
     <>
       <div className="note-editor">

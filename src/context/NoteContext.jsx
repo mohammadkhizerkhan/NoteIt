@@ -7,7 +7,8 @@ const defaultValue={}
 const NoteContext=createContext(defaultValue)
 
 const NoteProvider=({children})=>{
-    const [isFormOpen, setIsFormOpen] = useState(false);;
+    
+    const [isEdit, setIsEdit] = useState(false)
     const [noteInput,setNoteInput]=useState({
         title:"",
         desc:"",
@@ -38,7 +39,6 @@ const NoteProvider=({children})=>{
             isArchive:false,
             isTrash:false
         })
-        setIsFormOpen(false)
     }
 
     const [noteState, noteDispatch] = useReducer(NoteReducer,noteInput)
@@ -58,7 +58,7 @@ const NoteProvider=({children})=>{
     
     return (
         <>
-        <NoteContext.Provider value={{isFormOpen,setIsFormOpen,noteInput,changeHandler,notes,submitNote,noteDispatch}}>
+        <NoteContext.Provider value={{noteInput,setNoteInput,changeHandler,notes,submitNote,isEdit,setIsEdit}}>
             {children}
         </NoteContext.Provider>
         </>
