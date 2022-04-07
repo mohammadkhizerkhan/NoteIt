@@ -5,6 +5,7 @@ import {
   MdOutlineArchive,
   MdOutlineLabel,
 } from "react-icons/md";
+
 import { addNote, updateNote } from "../../services/firebaseServices";
 
 function NoteForm({ closeForm, editNoteData, edit }) {
@@ -22,9 +23,10 @@ function NoteForm({ closeForm, editNoteData, edit }) {
     const value=e.target.value;
     setNoteInput((prev)=>({...prev,[name]:value}))
 }
+console.log(noteInput)
 
   const submitNote = () => {
-    // edit?updateNote:addNote;
+    {edit?updateNote(noteInput):addNote(noteInput)}
     setNoteInput({
       title: "",
       desc: "",
@@ -66,6 +68,7 @@ function NoteForm({ closeForm, editNoteData, edit }) {
             onChange={changeHandler}
           ></textarea>
         </div>
+
         <div className="notes-editor-footer">
           <div className="notes-footer-icons">
             <button class="btn primary-btn btn-icon">
@@ -82,8 +85,8 @@ function NoteForm({ closeForm, editNoteData, edit }) {
             <button className="btn btn-s" onClick={closeForm}>
               Cancel
             </button>
-            <button className="btn btn-s" onClick={()=>submitNote}>
-              {edit ? "update" : "Add"}
+            <button className="btn btn-s" onClick={()=>submitNote()}>
+              add
             </button>
           </div>
         </div>

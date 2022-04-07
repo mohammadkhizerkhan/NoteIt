@@ -1,34 +1,28 @@
 import { db } from "../firebase/config";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
-// import { addDoc} from "firebase/firestore";
-// import { colRef } from "../../firebase/config";
+import { addDoc} from "firebase/firestore";
+import { colRef } from "../firebase/config";
 
 
-const addNote=()=>{
-    // addDoc(colRef,{
-    //     title:noteInput.title,
-    //     desc:noteInput.desc,
-    //     isPinned:noteInput.isPinned,
-    //     isArchive:noteInput.isArchive,
-    //     isTrash:noteInput.isTrash
-    // })
+const addNote=(noteInput)=>{
+    addDoc(colRef,{
+        title:noteInput.title,
+        desc:noteInput.desc,
+        isPinned:noteInput.isPinned,
+        isArchive:noteInput.isArchive,
+        isTrash:noteInput.isTrash
+    })
 }
 
+// 
 const updateNote=(note)=>{
-    // updateDoc(doc(db,"notes",note.id),{
-    //     title:note.title,
-    //     desc:note.desc,
-    //     isPinned:note.isPinned,
-    //     isArchive:note.isArchive,
-    //     isTrash:note.isTrash
-    // })
-    // setNoteInput({
-    //     title:"",
-    //     desc:"",
-    //     isPinned:false,
-    //     isArchive:false,
-    //     isTrash:false
-    // })
+    updateDoc(doc(db,"notes",note.id),{
+        title:note.title,
+        desc:note.desc,
+        isPinned:note.isPinned,
+        isArchive:note.isArchive,
+        isTrash:note.isTrash
+    })
 }
 
 

@@ -117,7 +117,10 @@ function SideBar() {
           <button class="btn btn-m btn-item" onClick={()=>setIsFormOpen(true)}>Create New Note</button>
         </aside>
         {
-          isFormOpen && <NoteForm closeForm={()=>setIsFormOpen(false)}/>
+          isFormOpen &&
+        <div className='noteEditor-div'>
+          <NoteForm closeForm={()=>setIsFormOpen(false)}/>
+        </div>
         }
       </>
     )
