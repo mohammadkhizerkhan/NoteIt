@@ -86,7 +86,7 @@ console.log(noteInput)
               Cancel
             </button>
             <button className="btn btn-s" onClick={()=>submitNote()}>
-              add
+              {edit?"update":"add"}
             </button>
           </div>
         </div>
