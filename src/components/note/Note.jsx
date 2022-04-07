@@ -18,33 +18,33 @@ function Note({note}) {
     return (
       <>
 
-      <div class="note" key={id}>
-      <button class="btn primary-btn btn-icon pin-icon" onClick={()=>updatePin(note)}>
+      <div className="note" key={id}>
+      <button className="btn primary-btn btn-icon pin-icon" onClick={()=>updatePin(note)}>
             {isPinned ? <BsPinFill />:<BsPin/>}
       </button>
-      <div class="title-div">
+      <div className="title-div">
         <h3>{title}</h3>
       </div>
-      <div class="note-desc-div text-left">
+      <div className="note-desc-div text-left">
         <p>{desc}</p>
       </div>
       <div className="notes-footer">
         <div className="date">Created on 06/11/20201</div>
         <div className="notes-footer-icons">
-          <button class="btn primary-btn btn-icon">
+          <button className="btn primary-btn btn-icon">
             <MdOutlineColorLens />
           </button>
-          <button class="btn primary-btn btn-icon">
+          <button className="btn primary-btn btn-icon">
             <MdOutlineLabel />
           </button>
-          <button class="btn primary-btn btn-icon" onClick={() => setIsFormOpen(true)}>
+          <button className="btn primary-btn btn-icon" onClick={() => setIsFormOpen(true)}>
             <MdOutlineModeEditOutline />
           </button>
-          <button class="btn primary-btn btn-icon">
+          <button className="btn primary-btn btn-icon">
             <MdOutlineArchive onClick={()=>isPinned? updatePinnedArchive(note):updateArchive(note)}/>
           </button>
           <button
-            class="btn primary-btn btn-icon"
+            className="btn primary-btn btn-icon"
             onClick={() => updateTrash(note)}
             >
             <RiDeleteBin6Line />

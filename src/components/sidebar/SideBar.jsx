@@ -6,10 +6,10 @@ function SideBar() {
   const [isFormOpen, setIsFormOpen] = useState(false);
     return (
       <>
-        <aside class="aside-cont">
-          <ul class="list list-stack">
+        <aside className="aside-cont">
+          <ul className="list list-stack">
             <Link to="/Home">
-            <li class="list-item">
+            <li className="list-item">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 link="http://www.w3.org/1999/xlink"
@@ -30,7 +30,7 @@ function SideBar() {
             </li>
             </Link>
             <Link to="/Labels">
-            <li class="list-item">
+            <li className="list-item">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 link="http://www.w3.org/1999/xlink"
@@ -51,7 +51,7 @@ function SideBar() {
             </li>
             </Link>
             <Link to="Archive">
-            <li class="list-item">
+            <li className="list-item">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 link="http://www.w3.org/1999/xlink"
@@ -72,7 +72,7 @@ function SideBar() {
             </li>
             </Link>
             <Link to="/Trash">
-            <li class="list-item">
+            <li className="list-item">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 link="http://www.w3.org/1999/xlink"
@@ -93,7 +93,7 @@ function SideBar() {
             </li>
             </Link>
             <Link to="/Profile">
-            <li class="list-item">
+            <li className="list-item">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 link="http://www.w3.org/1999/xlink"
@@ -114,7 +114,7 @@ function SideBar() {
             </li>
             </Link>
           </ul>
-          <button class="btn btn-m btn-item" onClick={()=>setIsFormOpen(true)}>Create New Note</button>
+          <button className="btn btn-m btn-item" onClick={()=>setIsFormOpen(true)}>Create New Note</button>
         </aside>
         {
           isFormOpen &&

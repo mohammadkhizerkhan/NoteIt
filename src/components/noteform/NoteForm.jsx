@@ -9,7 +9,6 @@ import {
 import { addNote, updateNote } from "../../services/firebaseServices";
 
 function NoteForm({ closeForm, editNoteData, edit }) {
-  console.log(editNoteData);
   const [noteInput, setNoteInput] = useState({
     title: "",
     desc: "",
@@ -23,7 +22,6 @@ function NoteForm({ closeForm, editNoteData, edit }) {
     const value=e.target.value;
     setNoteInput((prev)=>({...prev,[name]:value}))
 }
-console.log(noteInput)
 
   const submitNote = () => {
     {edit?updateNote(noteInput):addNote(noteInput)}
@@ -74,10 +72,10 @@ console.log(noteInput)
             <button class="btn primary-btn btn-icon">
               <MdOutlineColorLens />
             </button>
-            <button class="btn primary-btn btn-icon">
+            <button className="btn primary-btn btn-icon">
               <MdOutlineLabel />
             </button>
-            <button class="btn primary-btn btn-icon">
+            <button className="btn primary-btn btn-icon">
               <MdOutlineArchive />
             </button>
           </div>
