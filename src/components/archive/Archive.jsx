@@ -4,11 +4,10 @@ import {
   MdOutlineColorLens,
   MdOutlineArchive,
   MdOutlineLabel,
-  MdOutlineRestoreFromTrash
 } from "react-icons/md";
 import {useNote} from "../../context/NoteContext"
-import { BsPin,BsPinFill } from "react-icons/bs";
-import {updateArchive,updateTrash,updatePin,updateArchivePin} from "../../services/firebaseServices"
+import { BsPin } from "react-icons/bs";
+import {updateArchive,updateTrash,updateArchivePin} from "../../services/firebaseServices"
 function Archive() {
     const {notes} = useNote();
     return (

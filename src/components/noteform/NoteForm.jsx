@@ -1,14 +1,46 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
+
 import {
   MdOutlineColorLens,
   MdOutlineArchive,
   MdOutlineLabel,
 } from "react-icons/md";
-import {useNote} from "../../context/NoteContext"
 
-function NoteForm({closeForm}) {
-  const {noteInput,changeHandler,submitNote} = useNote();
-  
+import { addNote, updateNote } from "../../services/firebaseServices";
+
+function NoteForm({ closeForm, editNoteData, edit }) {
+  const [noteInput, setNoteInput] = useState({
+    title: "",
+    desc: "",
+    isPinned: false,
+    isArchive: false,
+    isTrash: false,
+  });
+
+  const changeHandler=(e)=>{
+    const name=e.target.name;
+    const value=e.target.value;
+    setNoteInput((prev)=>({...prev,[name]:value}))
+}
+
+  const submitNote = () => {
+    {edit?updateNote(noteInput):addNote(noteInput)}
+    setNoteInput({
+      title: "",
+      desc: "",
+      isPinned: false,
+      isArchive: false,
+      isTrash: false,
+    });
+    closeForm();
+  };
+
+  useEffect(() => {
+    if (edit) {
+      setNoteInput(editNoteData);
+    }
+  }, []);
+
   return (
     <>
       <div className="note-editor">
@@ -34,21 +66,26 @@ function NoteForm({closeForm}) {
             onChange={changeHandler}
           ></textarea>
         </div>
+
         <div className="notes-editor-footer">
           <div className="notes-footer-icons">
             <button class="btn primary-btn btn-icon">
               <MdOutlineColorLens />
             </button>
-            <button class="btn primary-btn btn-icon">
+            <button className="btn primary-btn btn-icon">
               <MdOutlineLabel />
             </button>
-            <button class="btn primary-btn btn-icon">
+            <button className="btn primary-btn btn-icon">
               <MdOutlineArchive />
             </button>
           </div>
           <div className="notes-footer-btn">
-            <button className="btn btn-s" onClick={closeForm}>Cancel</button>
-            <button className="btn btn-s" onClick={submitNote}>Add</button>
+            <button className="btn btn-s" onClick={closeForm}>
+              Cancel
+            </button>
+            <button className="btn btn-s" onClick={()=>submitNote()}>
+              {edit?"update":"add"}
+            </button>
           </div>
         </div>
       </div>
