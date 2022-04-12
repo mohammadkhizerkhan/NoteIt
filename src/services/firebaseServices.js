@@ -8,6 +8,7 @@ const addNote=(noteInput)=>{
     addDoc(colRef,{
         title:noteInput.title,
         desc:noteInput.desc,
+        backgroundcolor:"yellow",
         isPinned:noteInput.isPinned,
         isArchive:noteInput.isArchive,
         isTrash:noteInput.isTrash,
@@ -80,6 +81,15 @@ const updateTrash=async(note)=>{
         console.log("error from updateTrash",error)
     }
 }
+const updateNoteColor=async(id,color)=>{
+    try {
+        await updateDoc(doc(db,"notes",id),{
+            backgroundcolor:color
+        })
+    } catch (error) {
+        console.log("error from updateTrash",error)
+    }
+}
 const deleteNote=async(id)=>{
     try {
         await deleteDoc(doc(db,"notes",id))
@@ -88,4 +98,4 @@ const deleteNote=async(id)=>{
     }
 }
 
-export {addNote,updateNote,updateTrash,deleteNote,updateArchive,updatePin,updatePinnedArchive,updateArchivePin}
+export {addNote,updateNote,updateTrash,deleteNote,updateArchive,updatePin,updatePinnedArchive,updateArchivePin,updateNoteColor}
