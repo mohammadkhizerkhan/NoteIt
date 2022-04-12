@@ -22,7 +22,7 @@ const NoteProvider=({children})=>{
         })
         return ()=>unSub();
       }, []);
-      console.log(notes)
+      // console.log(notes)
 
     
     return (

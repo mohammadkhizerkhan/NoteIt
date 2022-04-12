@@ -12,6 +12,7 @@ function NoteForm({ closeForm, editNoteData, edit }) {
   const [noteInput, setNoteInput] = useState({
     title: "",
     desc: "",
+    backgroundcolor:"white",
     isPinned: false,
     isArchive: false,
     isTrash: false,
@@ -69,9 +70,33 @@ function NoteForm({ closeForm, editNoteData, edit }) {
 
         <div className="notes-editor-footer">
           <div className="notes-footer-icons">
-            <button class="btn primary-btn btn-icon">
-              <MdOutlineColorLens />
-            </button>
+          <div className="dropdown-color-div">
+              <button className="btn primary-btn btn-icon">
+                <MdOutlineColorLens />
+                <div className="dropdown-color-btns">
+                  <button
+                    className="note-color-btn"
+                    style={{ backgroundColor: "#f28b82" }}
+                    onClick={()=>setNoteInput(prev=>({...prev,backgroundcolor:"#f28b82"}))}
+                    ></button>
+                  <button
+                    className="note-color-btn"
+                    style={{ backgroundColor: "#aecbfa" }}
+                    onClick={()=>setNoteInput(prev=>({...prev,backgroundcolor:"#aecbfa"}))}
+                    ></button>
+                  <button
+                    className="note-color-btn"
+                    style={{ backgroundColor: "#d7aefb" }}
+                    onClick={()=>setNoteInput(prev=>({...prev,backgroundcolor:"#d7aefb"}))}
+                    ></button>
+                  <button
+                    className="note-color-btn"
+                    onClick={()=>setNoteInput(prev=>({...prev,backgroundcolor:"#ccff90"}))}
+                    style={{ backgroundColor: "#ccff90" }}
+                  ></button>
+                </div>
+              </button>
+            </div>
             <button className="btn primary-btn btn-icon">
               <MdOutlineLabel />
             </button>
