@@ -8,7 +8,7 @@ const addNote=(noteInput)=>{
     addDoc(colRef,{
         title:noteInput.title,
         desc:noteInput.desc,
-        backgroundcolor:"yellow",
+        backgroundcolor:"white",
         isPinned:noteInput.isPinned,
         isArchive:noteInput.isArchive,
         isTrash:noteInput.isTrash,
