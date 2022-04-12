@@ -21,6 +21,7 @@ const updateNote=(note)=>{
     updateDoc(doc(db,"notes",note.id),{
         title:note.title,
         desc:note.desc,
+        backgroundcolor:note.backgroundcolor,
         isPinned:note.isPinned,
         isArchive:note.isArchive,
         isTrash:note.isTrash,
