@@ -1,5 +1,5 @@
 import { db } from "../firebase/config";
-import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { deleteDoc, doc, updateDoc,serverTimestamp } from "firebase/firestore";
 import { addDoc} from "firebase/firestore";
 import { colRef } from "../firebase/config";
 
@@ -10,7 +10,8 @@ const addNote=(noteInput)=>{
         desc:noteInput.desc,
         isPinned:noteInput.isPinned,
         isArchive:noteInput.isArchive,
-        isTrash:noteInput.isTrash
+        isTrash:noteInput.isTrash,
+        createdAt:serverTimestamp()
     })
 }
 
@@ -21,7 +22,8 @@ const updateNote=(note)=>{
         desc:note.desc,
         isPinned:note.isPinned,
         isArchive:note.isArchive,
-        isTrash:note.isTrash
+        isTrash:note.isTrash,
+        createdAt:serverTimestamp()
     })
 }
 
