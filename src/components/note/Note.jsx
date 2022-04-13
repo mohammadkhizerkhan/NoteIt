@@ -7,6 +7,7 @@ import {
   MdOutlineModeEditOutline,
   MdOutlineAddCircleOutline,
 } from "react-icons/md";
+import { TiDeleteOutline } from "react-icons/ti";
 import { BsPin, BsPinFill } from "react-icons/bs";
 import {
   updatePin,
@@ -43,9 +44,6 @@ function Note({ note }) {
     setLabelName("");
   };
 
-  // const addLabelToNote=(labelInput)=>{
-  //   console.log(labelInput)
-  // }
 
   return (
     <>
@@ -53,6 +51,7 @@ function Note({ note }) {
         className="note"
         key={id}
         style={{ backgroundColor: backgroundcolor }}
+        onMouseLeave={()=>setIsLabel(false)}
       >
         <button
           className="btn primary-btn btn-icon pin-icon"
@@ -68,7 +67,12 @@ function Note({ note }) {
         </div>
         <div className="notes-label-div">
           {noteLables.map((noteLabel) => {
-            return <div className="label-chip">{noteLabel}</div>;
+            return (
+              <div className="label-chip">
+              {noteLabel}
+              <button className="btn btn-icon btn-chip-delete" onClick={()=>removeLabelFromNote(id,noteLabel)}><TiDeleteOutline/></button>
+              </div>
+            )
           })}
         </div>
         <div className="notes-footer">
@@ -141,11 +145,11 @@ function Note({ note }) {
                   <div className="underline"></div>
                   {labels.map((label) => {
                     return (
-                      <label htmlFor="">
+                      <label htmlFor={label.name}>
                         <input
                           type="checkbox"
                           name={label.name}
-                          id=""
+                          id={label.name}
                           checked={noteLables.includes(label.name)}
                           onChange={() => noteLables.includes(label.name)?removeLabelFromNote(id,label.name):addLabelToNote(id, label.name)}
                         />

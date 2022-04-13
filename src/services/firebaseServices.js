@@ -88,6 +88,7 @@ const updateTrash=async(note)=>{
         console.log("error from updateTrash",error)
     }
 }
+
 const updateNoteColor=async(id,color)=>{
     try {
         await updateDoc(doc(db,"notes",id),{
@@ -116,7 +117,6 @@ const removeLabelFromNote=async(id,labelInput)=>{
         console.log("error from addLabelToNote",error)
     }
 }
-
 
 const deleteNote=async(id)=>{
     try {
