@@ -1,8 +1,13 @@
 import { db } from "../firebase/config";
-import { deleteDoc, doc, updateDoc,serverTimestamp } from "firebase/firestore";
+import { deleteDoc, doc, updateDoc,serverTimestamp,arrayUnion,arrayRemove } from "firebase/firestore";
 import { addDoc} from "firebase/firestore";
-import { colRef } from "../firebase/config";
+import { colRef,labelColRef } from "../firebase/config";
 
+const addLabel=(labelName)=>{
+    addDoc(labelColRef,{
+        name:labelName
+    })
+}
 
 const addNote=(noteInput)=>{
     addDoc(colRef,{
@@ -12,6 +17,7 @@ const addNote=(noteInput)=>{
         isPinned:noteInput.isPinned,
         isArchive:noteInput.isArchive,
         isTrash:noteInput.isTrash,
+        labels:[],
         createdAt:serverTimestamp()
     })
 }
@@ -91,6 +97,27 @@ const updateNoteColor=async(id,color)=>{
         console.log("error from updateTrash",error)
     }
 }
+
+const addLabelToNote=async(id,labelInput)=>{
+    try {
+        await updateDoc(doc(db,"notes",id),{
+            labels:arrayUnion(labelInput)
+        })
+    } catch (error) {
+        console.log("error from addLabelToNote",error)
+    }
+}
+const removeLabelFromNote=async(id,labelInput)=>{
+    try {
+        await updateDoc(doc(db,"notes",id),{
+            labels:arrayRemove(labelInput)
+        })
+    } catch (error) {
+        console.log("error from addLabelToNote",error)
+    }
+}
+
+
 const deleteNote=async(id)=>{
     try {
         await deleteDoc(doc(db,"notes",id))
@@ -99,4 +126,4 @@ const deleteNote=async(id)=>{
     }
 }
 
-export {addNote,updateNote,updateTrash,deleteNote,updateArchive,updatePin,updatePinnedArchive,updateArchivePin,updateNoteColor}
+export {addLabelToNote,removeLabelFromNote,addLabel,addNote,updateNote,updateTrash,deleteNote,updateArchive,updatePin,updatePinnedArchive,updateArchivePin,updateNoteColor}

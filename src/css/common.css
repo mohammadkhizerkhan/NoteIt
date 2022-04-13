@@ -26,3 +26,10 @@ html{
 .btn:hover{
     background-color: var(--primary-color)
 }
+
+.underline{
+    height: 1px;
+    background-color: var(--primary-color);
+    width: 100%;
+    margin: 4px 0;
+}

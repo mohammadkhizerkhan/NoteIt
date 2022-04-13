@@ -5,6 +5,7 @@ import {
   MdOutlineArchive,
   MdOutlineLabel,
   MdOutlineModeEditOutline,
+  MdOutlineAddCircleOutline,
 } from "react-icons/md";
 import { BsPin, BsPinFill } from "react-icons/bs";
 import {
@@ -12,18 +13,47 @@ import {
   updateArchive,
   updatePinnedArchive,
   updateTrash,
-  updateNoteColor
+  updateNoteColor,
 } from "../../services/firebaseServices";
 import NoteForm from "../noteform/NoteForm";
+import { useNote } from "../../context/NoteContext";
+import { addLabel, addLabelToNote,removeLabelFromNote } from "../../services/firebaseServices";
 
 function Note({ note }) {
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const { title, desc, id, isPinned, createdAt,backgroundcolor } = note;
+  const [isLabel, setIsLabel] = useState(false);
+  const [labelName, setLabelName] = useState("");
+  const {
+    title,
+    desc,
+    id,
+    isPinned,
+    createdAt,
+    backgroundcolor,
+    labels: noteLables,
+  } = note;
   const createdInfo = createdAt?.toDate();
+  const { labels } = useNote();
+  console.log(noteLables);
+  const submitLabel = (e) => {
+    e.preventDefault();
+    {
+      labelName && addLabel(labelName);
+    }
+    setLabelName("");
+  };
+
+  // const addLabelToNote=(labelInput)=>{
+  //   console.log(labelInput)
+  // }
 
   return (
     <>
-      <div className="note" key={id} style={{backgroundColor:backgroundcolor}}>
+      <div
+        className="note"
+        key={id}
+        style={{ backgroundColor: backgroundcolor }}
+      >
         <button
           className="btn primary-btn btn-icon pin-icon"
           onClick={() => updatePin(note)}
@@ -35,6 +65,11 @@ function Note({ note }) {
         </div>
         <div className="note-desc-div text-left">
           <p>{desc}</p>
+        </div>
+        <div className="notes-label-div">
+          {noteLables.map((noteLabel) => {
+            return <div className="label-chip">{noteLabel}</div>;
+          })}
         </div>
         <div className="notes-footer">
           <div className="date">
@@ -54,42 +89,80 @@ function Note({ note }) {
           </div>
           <div className="notes-footer-icons">
             <div className="dropdown-color-div">
-              <button className="btn primary-btn btn-icon">
+              <button className="btn btn-icon">
                 <MdOutlineColorLens />
                 <div className="dropdown-color-btns">
                   <button
                     className="note-color-btn"
                     style={{ backgroundColor: "#f28b82" }}
-                    onClick={()=>updateNoteColor(id,"#f28b82")}
-                    ></button>
+                    onClick={() => updateNoteColor(id, "#f28b82")}
+                  ></button>
                   <button
                     className="note-color-btn"
                     style={{ backgroundColor: "#aecbfa" }}
-                    onClick={()=>updateNoteColor(id,"#aecbfa")}
-                    ></button>
+                    onClick={() => updateNoteColor(id, "#aecbfa")}
+                  ></button>
                   <button
                     className="note-color-btn"
                     style={{ backgroundColor: "#d7aefb" }}
-                    onClick={()=>updateNoteColor(id,"#d7aefb")}
-                    ></button>
+                    onClick={() => updateNoteColor(id, "#d7aefb")}
+                  ></button>
                   <button
                     className="note-color-btn"
-                    onClick={()=>updateNoteColor(id,"#ccff90")}
+                    onClick={() => updateNoteColor(id, "#ccff90")}
                     style={{ backgroundColor: "#ccff90" }}
                   ></button>
                 </div>
               </button>
             </div>
-            <button className="btn primary-btn btn-icon">
-              <MdOutlineLabel />
-            </button>
+            <div className="dropdown-label-div">
+              <button
+                className="btn btn-icon"
+                onClick={() => setIsLabel(!isLabel)}
+              >
+                <MdOutlineLabel />
+              </button>
+              {isLabel && (
+                <div className="dropdown-label-checkbox">
+                  <form action="" className="label-form">
+                    <input
+                      type="text"
+                      className="input-style label-input"
+                      value={labelName}
+                      onChange={(e) => setLabelName(e.target.value)}
+                    />
+                    <button
+                      className="btn btn-icon"
+                      onClick={(e) => submitLabel(e)}
+                    >
+                      <MdOutlineAddCircleOutline />
+                    </button>
+                  </form>
+                  <div className="underline"></div>
+                  {labels.map((label) => {
+                    return (
+                      <label htmlFor="">
+                        <input
+                          type="checkbox"
+                          name={label.name}
+                          id=""
+                          checked={noteLables.includes(label.name)}
+                          onChange={() => noteLables.includes(label.name)?removeLabelFromNote(id,label.name):addLabelToNote(id, label.name)}
+                        />
+                        {label.name}
+                      </label>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
             <button
-              className="btn primary-btn btn-icon"
+              className="btn  btn-icon"
               onClick={() => setIsFormOpen(true)}
             >
               <MdOutlineModeEditOutline />
             </button>
-            <button className="btn primary-btn btn-icon">
+            <button className="btn  btn-icon">
               <MdOutlineArchive
                 onClick={() =>
                   isPinned ? updatePinnedArchive(note) : updateArchive(note)

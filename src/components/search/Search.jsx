@@ -22,7 +22,7 @@ function Search() {
                 ></path>
               </svg>
             </div>
-            <input type="text" class="input input-search" />
+            <input type="text" class="input input-style input-search" />
           </div>
     )
 }

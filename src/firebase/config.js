@@ -20,6 +20,7 @@ const db=getFirestore(app);
 
 // collection ref 
 const colRef=collection(db,"notes");
+const labelColRef=collection(db,"labels")
 
 
-export {db,colRef};
+export {db,colRef,labelColRef};
