@@ -1,14 +1,20 @@
 import React,{useState} from 'react'
-import {Link} from "react-router-dom"
+import {NavLink} from "react-router-dom"
 import NoteForm from '../noteform/NoteForm';
 function SideBar() {
   
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const getActiveStyle=({ isActive }) => {
+    return {
+      color: isActive ? "#fafdff" : "#1a1a1a",
+      backgroundColor:isActive?"#6BB7FF":"white"
+    };
+  }
     return (
       <>
         <aside className="aside-cont">
           <ul className="list list-stack">
-            <Link to="/Home">
+            <NavLink to="/Home" style={getActiveStyle} className="NavLink">
             <li className="list-item">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -28,8 +34,8 @@ function SideBar() {
               </svg>
               <span>Home</span>
             </li>
-            </Link>
-            <Link to="/Labels">
+            </NavLink>
+            <NavLink to="/Labels" style={getActiveStyle} className="NavLink">
             <li className="list-item">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -49,8 +55,8 @@ function SideBar() {
               </svg>
               <span>Labels</span>
             </li>
-            </Link>
-            <Link to="Archive">
+            </NavLink>
+            <NavLink to="Archive" style={getActiveStyle} className="NavLink">
             <li className="list-item">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -70,8 +76,8 @@ function SideBar() {
               </svg>
               <span>Archive</span>
             </li>
-            </Link>
-            <Link to="/Trash">
+            </NavLink>
+            <NavLink to="/Trash" style={getActiveStyle} className="NavLink">
             <li className="list-item">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -91,8 +97,8 @@ function SideBar() {
               </svg>
               <span>Trash</span>
             </li>
-            </Link>
-            <Link to="/Profile">
+            </NavLink>
+            <NavLink to="/Profile" style={getActiveStyle} className="NavLink">
             <li className="list-item">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -112,7 +118,7 @@ function SideBar() {
               </svg>
               <span>Profile</span>
             </li>
-            </Link>
+            </NavLink>
           </ul>
           <button className="btn btn-m btn-item" onClick={()=>setIsFormOpen(true)}>Create New Note</button>
         </aside>

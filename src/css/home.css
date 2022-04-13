@@ -38,6 +38,7 @@
 
 .list-stack a {
   width: 100%;
+  border-radius: 5px;
 }
 
 .list-stack {
