@@ -1,13 +1,24 @@
 import React from "react";
+import { useFilter } from "../../context/FilterContext";
 
 import { useNote } from "../../context/NoteContext";
 import Note from "../note/Note";
 
 function Notes() {
+  const filterNotes=()=>{
+    let sortedNotes=[...notes]
+    if(filterState.search){
+      sortedNotes=sortedNotes.filter(note=>note.title.toLowerCase().includes(filterState.search.toLowerCase()))
+    }
+    return sortedNotes;
+  }
   const { notes } = useNote();
-  const pinnedNotes=notes.filter(item=>item.isPinned && !item.isTrash && !item.isArchive)
-  const notpinnedNotes=notes.filter(item=>!item.isPinned && !item.isTrash && !item.isArchive)
- 
+  const {filterState}= useFilter();
+  const pinnedNotes=filterNotes().filter(item=>item.isPinned && !item.isTrash && !item.isArchive)
+  const notpinnedNotes=filterNotes().filter(item=>!item.isPinned && !item.isTrash && !item.isArchive)
+
+  console.log(filterState.search)
+  console.log(filterNotes())
   
   return (
     <>

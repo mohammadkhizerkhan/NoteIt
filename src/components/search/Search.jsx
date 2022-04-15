@@ -1,6 +1,16 @@
-import React from 'react'
+import React,{useState} from 'react'
+import { ACTION } from '../../action';
+import { useFilter } from '../../context/FilterContext'
 
 function Search() {
+  const {filterDispatch}=useFilter();
+  const [search, setSearch] = useState("")
+  const changeHandler=(e)=>{
+    setSearch(e.target.value)
+    if(search){
+      filterDispatch({type:ACTION.SEARCH,payload:e.target.value})
+    }
+  }
     return (
         <div class="input-icons">
             <div class="icon-cont">
@@ -22,7 +32,7 @@ function Search() {
                 ></path>
               </svg>
             </div>
-            <input type="text" class="input input-style input-search" />
+            <input type="text" class="input input-style input-search" onChange={changeHandler}/>
           </div>
     )
 }

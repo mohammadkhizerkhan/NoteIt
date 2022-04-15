@@ -1,4 +1,5 @@
 .navbar {
+  overflow: hidden;
   width: 100%;
   display: flex;
   flex-direction: row;
