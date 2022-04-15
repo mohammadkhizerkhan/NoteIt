@@ -1,5 +1,6 @@
 const ACTION={
-    SEARCH:"SEARCH"
+    SEARCH:"SEARCH",
+    SORT:"SORT"
 }
 
 export {ACTION}

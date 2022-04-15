@@ -3,7 +3,7 @@ import { ACTION } from '../../action';
 import { useFilter } from '../../context/FilterContext'
 
 function Search() {
-  const {filterDispatch}=useFilter();
+  const {filterState,filterDispatch}=useFilter();
   const [search, setSearch] = useState("")
   const changeHandler=(e)=>{
     setSearch(e.target.value)
@@ -32,7 +32,7 @@ function Search() {
                 ></path>
               </svg>
             </div>
-            <input type="text" class="input input-style input-search" onChange={changeHandler}/>
+            <input type="text" class="input input-style input-search" value={filterState.search} onChange={changeHandler}/>
           </div>
     )
 }
