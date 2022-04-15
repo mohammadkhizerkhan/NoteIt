@@ -15,10 +15,13 @@ import {
   updatePinnedArchive,
   updateTrash,
   updateNoteColor,
+  deleteLabel,
+  addLabel,
+  addLabelToNote,
+  removeLabelFromNote,
 } from "../../services/firebaseServices";
 import NoteForm from "../noteform/NoteForm";
 import { useNote } from "../../context/NoteContext";
-import { addLabel, addLabelToNote,removeLabelFromNote } from "../../services/firebaseServices";
 
 function Note({ note }) {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -44,14 +47,13 @@ function Note({ note }) {
     setLabelName("");
   };
 
-
   return (
     <>
       <div
         className="note"
         key={id}
         style={{ backgroundColor: backgroundcolor }}
-        onMouseLeave={()=>setIsLabel(false)}
+        // onMouseLeave={() => setIsLabel(false)}
       >
         <button
           className="btn primary-btn btn-icon pin-icon"
@@ -69,10 +71,15 @@ function Note({ note }) {
           {noteLables.map((noteLabel) => {
             return (
               <div className="label-chip">
-              {noteLabel}
-              <button className="btn btn-icon btn-chip-delete" onClick={()=>removeLabelFromNote(id,noteLabel)}><TiDeleteOutline/></button>
+                {noteLabel}
+                <button
+                  className="btn btn-icon btn-chip-delete"
+                  onClick={() => removeLabelFromNote(id, noteLabel)}
+                >
+                  <TiDeleteOutline />
+                </button>
               </div>
-            )
+            );
           })}
         </div>
         <div className="notes-footer">
@@ -145,16 +152,28 @@ function Note({ note }) {
                   <div className="underline"></div>
                   {labels.map((label) => {
                     return (
+                      <div className="label-cont" key={label.id}>
                       <label htmlFor={label.name}>
                         <input
                           type="checkbox"
                           name={label.name}
                           id={label.name}
                           checked={noteLables.includes(label.name)}
-                          onChange={() => noteLables.includes(label.name)?removeLabelFromNote(id,label.name):addLabelToNote(id, label.name)}
+                          onChange={() =>
+                            noteLables.includes(label.name)
+                              ? removeLabelFromNote(id, label.name)
+                              : addLabelToNote(id, label.name)
+                          }
                         />
                         {label.name}
                       </label>
+                        <button
+                          className="btn btn-icon btn-chip-delete"
+                          onClick={() => deleteLabel(label.id)}
+                        >
+                          <TiDeleteOutline />
+                        </button>
+                      </div>
                     );
                   })}
                 </div>

@@ -3,11 +3,7 @@ import { deleteDoc, doc, updateDoc,serverTimestamp,arrayUnion,arrayRemove } from
 import { addDoc} from "firebase/firestore";
 import { colRef,labelColRef } from "../firebase/config";
 
-const addLabel=(labelName)=>{
-    addDoc(labelColRef,{
-        name:labelName
-    })
-}
+
 
 const addNote=(noteInput)=>{
     addDoc(colRef,{
@@ -99,6 +95,21 @@ const updateNoteColor=async(id,color)=>{
     }
 }
 
+const addLabel=(labelName)=>{
+    addDoc(labelColRef,{
+        name:labelName
+    })
+}
+
+
+const deleteLabel=async(id)=>{
+    try {
+        await deleteDoc(doc(db,"labels",id))
+    } catch (error) {
+        console.log("error from deleteLabel",error)  
+    }
+}
+
 const addLabelToNote=async(id,labelInput)=>{
     try {
         await updateDoc(doc(db,"notes",id),{
@@ -122,8 +133,8 @@ const deleteNote=async(id)=>{
     try {
         await deleteDoc(doc(db,"notes",id))
     } catch (error) {
-        console.log("error from updateDeleteNote",error)  
+        console.log("error from DeleteNote",error)  
     }
 }
 
-export {addLabelToNote,removeLabelFromNote,addLabel,addNote,updateNote,updateTrash,deleteNote,updateArchive,updatePin,updatePinnedArchive,updateArchivePin,updateNoteColor}
+export {addLabelToNote,removeLabelFromNote,addLabel,deleteLabel,addNote,updateNote,updateTrash,deleteNote,updateArchive,updatePin,updatePinnedArchive,updateArchivePin,updateNoteColor}
