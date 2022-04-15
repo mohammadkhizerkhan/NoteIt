@@ -1,7 +1,8 @@
 import { db } from "../firebase/config";
-import { deleteDoc, doc, updateDoc,serverTimestamp } from "firebase/firestore";
+import { deleteDoc, doc, updateDoc,serverTimestamp,arrayUnion,arrayRemove } from "firebase/firestore";
 import { addDoc} from "firebase/firestore";
-import { colRef } from "../firebase/config";
+import { colRef,labelColRef } from "../firebase/config";
+
 
 
 const addNote=(noteInput)=>{
@@ -12,6 +13,7 @@ const addNote=(noteInput)=>{
         isPinned:noteInput.isPinned,
         isArchive:noteInput.isArchive,
         isTrash:noteInput.isTrash,
+        labels:[],
         createdAt:serverTimestamp()
     })
 }
@@ -82,6 +84,7 @@ const updateTrash=async(note)=>{
         console.log("error from updateTrash",error)
     }
 }
+
 const updateNoteColor=async(id,color)=>{
     try {
         await updateDoc(doc(db,"notes",id),{
@@ -91,12 +94,47 @@ const updateNoteColor=async(id,color)=>{
         console.log("error from updateTrash",error)
     }
 }
+
+const addLabel=(labelName)=>{
+    addDoc(labelColRef,{
+        name:labelName
+    })
+}
+
+
+const deleteLabel=async(id)=>{
+    try {
+        await deleteDoc(doc(db,"labels",id))
+    } catch (error) {
+        console.log("error from deleteLabel",error)  
+    }
+}
+
+const addLabelToNote=async(id,labelInput)=>{
+    try {
+        await updateDoc(doc(db,"notes",id),{
+            labels:arrayUnion(labelInput)
+        })
+    } catch (error) {
+        console.log("error from addLabelToNote",error)
+    }
+}
+const removeLabelFromNote=async(id,labelInput)=>{
+    try {
+        await updateDoc(doc(db,"notes",id),{
+            labels:arrayRemove(labelInput)
+        })
+    } catch (error) {
+        console.log("error from addLabelToNote",error)
+    }
+}
+
 const deleteNote=async(id)=>{
     try {
         await deleteDoc(doc(db,"notes",id))
     } catch (error) {
-        console.log("error from updateDeleteNote",error)  
+        console.log("error from DeleteNote",error)  
     }
 }
 
-export {addNote,updateNote,updateTrash,deleteNote,updateArchive,updatePin,updatePinnedArchive,updateArchivePin,updateNoteColor}
+export {addLabelToNote,removeLabelFromNote,addLabel,deleteLabel,addNote,updateNote,updateTrash,deleteNote,updateArchive,updatePin,updatePinnedArchive,updateArchivePin,updateNoteColor}

@@ -1,5 +1,5 @@
 import { createContext, useContext,useState,useEffect} from "react";
-import { colRef } from "../firebase/config";
+import { colRef,labelColRef } from "../firebase/config";
 import { onSnapshot, query} from "firebase/firestore";
 
 const defaultValue={}
@@ -9,6 +9,7 @@ const NoteProvider=({children})=>{
     
     
     const [notes,setNotes]=useState([])
+    const [labels,setLabels]=useState([])
 
 
     useEffect(() => {
@@ -22,12 +23,24 @@ const NoteProvider=({children})=>{
         })
         return ()=>unSub();
       }, []);
-      // console.log(notes)
+
+    useEffect(() => {
+        const q=query(labelColRef);
+        const unSub=onSnapshot(q,(QuerySnapshot)=>{
+          let labelArray=[]
+          QuerySnapshot.forEach((doc)=>{
+            labelArray.push({...doc.data(),id:doc.id})
+          })
+          setLabels(labelArray)
+        })
+        return ()=>unSub();
+      }, []);
+
 
     
     return (
         <>
-        <NoteContext.Provider value={{notes}}>
+        <NoteContext.Provider value={{notes,labels}}>
             {children}
         </NoteContext.Provider>
         </>

@@ -11,7 +11,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route element={<Home />}>
           <Route path="/home" element={<><Search/><Notes/></>}/>
-          <Route path="/Labels" element={<Labels />} />
+          <Route path="/Labels/:labelName" element={<Labels />} />
           <Route path="/Trash" element={<Trash />} />
           <Route path="/Archive" element={<Archive />} />
           <Route path="/Profile" element={<Profile />} />
