@@ -1,20 +1,21 @@
-import React,{useState} from 'react'
-import {NavLink} from "react-router-dom"
-import NoteForm from '../noteform/NoteForm';
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import NoteForm from "../noteform/NoteForm";
+import { useNote } from "../../context/NoteContext";
 function SideBar() {
-  
+  const { labels } = useNote();
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const getActiveStyle=({ isActive }) => {
+  const getActiveStyle = ({ isActive }) => {
     return {
       color: isActive ? "#fafdff" : "#1a1a1a",
-      backgroundColor:isActive?"#6BB7FF":"white"
+      backgroundColor: isActive ? "#6BB7FF" : "white",
     };
-  }
-    return (
-      <>
-        <aside className="aside-cont">
-          <ul className="list list-stack">
-            <NavLink to="/Home" style={getActiveStyle} className="NavLink">
+  };
+  return (
+    <>
+      <aside className="aside-cont">
+        <ul className="list list-stack">
+          <NavLink to="/Home" style={getActiveStyle} className="NavLink">
             <li className="list-item">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -34,29 +35,33 @@ function SideBar() {
               </svg>
               <span>Home</span>
             </li>
-            </NavLink>
-            <NavLink to="/Labels" style={getActiveStyle} className="NavLink">
-            <li className="list-item">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                link="http://www.w3.org/1999/xlink"
-                aria-hidden="true"
-                role="img"
-                class="iconify iconify--ci"
-                width="25"
-                height="25"
-                preserveAspectRatio="xMidYMid meet"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fill="#020202"
-                  d="m15.5 19l-11-.01a2 2 0 0 1-2-1.99V7a2 2 0 0 1 2-1.99l11-.01a2 2 0 0 1 1.63.84L21.5 12l-4.37 6.16a2 2 0 0 1-1.63.84ZM4.5 7v10h11l3.55-5l-3.55-5h-11Z"
-                ></path>
-              </svg>
-              <span>Labels</span>
-            </li>
-            </NavLink>
-            <NavLink to="Archive" style={getActiveStyle} className="NavLink">
+          </NavLink>
+          {labels.map((label) => {
+            return (
+              <NavLink to={`/Labels/${label.name}`} style={getActiveStyle} className="NavLink">
+                <li className="list-item">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    link="http://www.w3.org/1999/xlink"
+                    aria-hidden="true"
+                    role="img"
+                    class="iconify iconify--ci"
+                    width="25"
+                    height="25"
+                    preserveAspectRatio="xMidYMid meet"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="#020202"
+                      d="m15.5 19l-11-.01a2 2 0 0 1-2-1.99V7a2 2 0 0 1 2-1.99l11-.01a2 2 0 0 1 1.63.84L21.5 12l-4.37 6.16a2 2 0 0 1-1.63.84ZM4.5 7v10h11l3.55-5l-3.55-5h-11Z"
+                    ></path>
+                  </svg>
+                  <span>{label.name}</span>
+                </li>
+              </NavLink>
+            );
+          })}
+          <NavLink to="Archive" style={getActiveStyle} className="NavLink">
             <li className="list-item">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -76,8 +81,8 @@ function SideBar() {
               </svg>
               <span>Archive</span>
             </li>
-            </NavLink>
-            <NavLink to="/Trash" style={getActiveStyle} className="NavLink">
+          </NavLink>
+          <NavLink to="/Trash" style={getActiveStyle} className="NavLink">
             <li className="list-item">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -97,8 +102,8 @@ function SideBar() {
               </svg>
               <span>Trash</span>
             </li>
-            </NavLink>
-            <NavLink to="/Profile" style={getActiveStyle} className="NavLink">
+          </NavLink>
+          <NavLink to="/Profile" style={getActiveStyle} className="NavLink">
             <li className="list-item">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -118,18 +123,22 @@ function SideBar() {
               </svg>
               <span>Profile</span>
             </li>
-            </NavLink>
-          </ul>
-          <button className="btn btn-m btn-item" onClick={()=>setIsFormOpen(true)}>Create New Note</button>
-        </aside>
-        {
-          isFormOpen &&
-        <div className='noteEditor-div'>
-          <NoteForm closeForm={()=>setIsFormOpen(false)}/>
+          </NavLink>
+        </ul>
+        <button
+          className="btn btn-m btn-item"
+          onClick={() => setIsFormOpen(true)}
+        >
+          Create New Note
+        </button>
+      </aside>
+      {isFormOpen && (
+        <div className="noteEditor-div">
+          <NoteForm closeForm={() => setIsFormOpen(false)} />
         </div>
-        }
-      </>
-    )
+      )}
+    </>
+  );
 }
 
-export default SideBar
+export default SideBar;

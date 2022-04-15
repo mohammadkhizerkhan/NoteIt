@@ -38,7 +38,6 @@ function Note({ note }) {
   } = note;
   const createdInfo = createdAt?.toDate();
   const { labels } = useNote();
-  console.log(noteLables);
   const submitLabel = (e) => {
     e.preventDefault();
     {
