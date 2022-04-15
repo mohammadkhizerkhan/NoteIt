@@ -53,7 +53,7 @@ function Note({ note }) {
         className="note"
         key={id}
         style={{ backgroundColor: backgroundcolor }}
-        // onMouseLeave={() => setIsLabel(false)}
+        onMouseLeave={() => setIsLabel(false)}
       >
         <button
           className="btn primary-btn btn-icon pin-icon"
@@ -122,6 +122,16 @@ function Note({ note }) {
                     className="note-color-btn"
                     onClick={() => updateNoteColor(id, "#ccff90")}
                     style={{ backgroundColor: "#ccff90" }}
+                  ></button>
+                  <button
+                    className="note-color-btn"
+                    onClick={() => updateNoteColor(id, "#e8eaed")}
+                    style={{ backgroundColor: "#e8eaed" }}
+                  ></button>
+                  <button
+                    className="note-color-btn"
+                    onClick={() => updateNoteColor(id, "#a7ffeb")}
+                    style={{ backgroundColor: "#a7ffeb" }}
                   ></button>
                 </div>
               </button>
