@@ -5,13 +5,8 @@ import Note from '../note/Note';
 
 function Labels() {
     const {labelName}=useParams();
-    const {notes,labels}=useNote();
+    const {notes}=useNote();
 
-    {
-        notes.map(note=>{
-            // (note.labels.includes(labelName)) && console.log(note.title)
-        })
-    }
     
     return (
        <>
