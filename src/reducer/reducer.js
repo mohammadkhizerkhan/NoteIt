@@ -1,10 +1,11 @@
-// import { updateTrash } from "../services/firebaseServices";
-// import { ACTION } from "../store/constant";
+import { ACTION } from "../action";
 
 const NoteReducer=(state,action)=>{
     switch (action.type) {
-        case "":
-            
+        case ACTION.SEARCH:
+            return {...state,search:action.payload};
+        case ACTION.SORT:
+            return {...state,sortBy:action.payload}
         default:
             return state;
     }

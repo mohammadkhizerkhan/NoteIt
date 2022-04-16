@@ -1,4 +1,5 @@
 .navbar {
+  overflow: hidden;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -28,8 +29,12 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   z-index: 1;
+}
+
+.main-headers{
+  align-self: center;
 }
 
 .btn-item {

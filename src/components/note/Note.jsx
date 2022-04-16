@@ -45,6 +45,7 @@ function Note({ note }) {
     }
     setLabelName("");
   };
+ 
 
   return (
     <>
@@ -68,17 +69,19 @@ function Note({ note }) {
         </div>
         <div className="notes-label-div">
           {noteLables.map((noteLabel) => {
-            return (
-              <div className="label-chip">
-                {noteLabel}
-                <button
-                  className="btn btn-icon btn-chip-delete"
-                  onClick={() => removeLabelFromNote(id, noteLabel)}
-                >
-                  <TiDeleteOutline />
-                </button>
-              </div>
-            );
+            if(labels.map(label=>label.name).includes(noteLabel)){
+              return (
+                <div className="label-chip">
+                  {noteLabel}
+                  <button
+                    className="btn btn-icon btn-chip-delete"
+                    onClick={() => removeLabelFromNote(id, noteLabel)}
+                  >
+                    <TiDeleteOutline />
+                  </button>
+                </div>
+              );
+            }
           })}
         </div>
         <div className="notes-footer">
