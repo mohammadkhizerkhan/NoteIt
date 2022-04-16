@@ -11,6 +11,7 @@ function Search() {
       filterDispatch({type:ACTION.SEARCH,payload:e.target.value})
     }
   }
+  console.log(filterState.search)
     return (
         <div class="input-icons">
             <div class="icon-cont">
@@ -32,7 +33,7 @@ function Search() {
                 ></path>
               </svg>
             </div>
-            <input type="text" class="input input-style input-search" value={filterState.search} onChange={changeHandler}/>
+            <input type="text" class="input input-style input-search" onChange={changeHandler}/>
           </div>
     )
 }
