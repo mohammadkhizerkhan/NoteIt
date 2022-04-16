@@ -45,7 +45,7 @@ function Note({ note }) {
     }
     setLabelName("");
   };
-  console.log(labels.map(item=>item.name))
+ 
 
   return (
     <>
