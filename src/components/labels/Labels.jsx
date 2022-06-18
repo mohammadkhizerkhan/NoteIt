@@ -30,6 +30,7 @@ function Labels() {
       </h1>
       <button
         className="btn btn-m btn-item"
+        style={{marginBottom:"10px"}}
           onClick={() => deleteLabel(labelId)}
       >
         Delete {labelName}
