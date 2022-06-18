@@ -8,7 +8,6 @@ const FilterProvider=({children})=>{
         search:"",
         sortBy:"new_to_old"
     })
-    console.log(filterState)
     return (
         <FilterContext.Provider value={{filterState,filterDispatch}}>
             {children}

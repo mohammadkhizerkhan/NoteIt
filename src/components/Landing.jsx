@@ -20,11 +20,8 @@ function Landing() {
           </div>
           <div className="auth-cont">
             <Link to="/home" className="btn btn-l">
-              Join Now
+              Start Now
             </Link>
-            <a href="" className="btn-link">
-              Already have an account
-            </a>
           </div>
         </div>
       </main>
