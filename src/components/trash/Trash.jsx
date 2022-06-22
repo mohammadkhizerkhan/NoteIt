@@ -1,21 +1,24 @@
 import React from "react";
 import {
   MdOutlineDeleteForever,
-  MdOutlineRestoreFromTrash
+  MdOutlineRestoreFromTrash,
 } from "react-icons/md";
 import { useNote } from "../../context/NoteContext";
 import { deleteNote, updateTrash } from "../../services/firebaseServices";
 
 function Trash() {
   const { notes } = useNote();
+  const trashNotes=notes.filter(note=>note.isTrash)
   return (
     <>
-    <h3>trash</h3>
+      {
+        trashNotes.length?<h1>Trash Notes</h1>:<h1>Your Trash is empty</h1>
+      }
       {notes.map((note) => {
-        const { title, desc, id } = note;
+        const { title, desc, id,backgroundcolor } = note;
         return (
           note.isTrash && (
-            <div class="note" key={id}>
+            <div class="note" key={id} style={{ backgroundColor: backgroundcolor }}>
               <div class="title-div">
                 <h3>{title}</h3>
               </div>
@@ -26,7 +29,7 @@ function Trash() {
                 <div className="notes-footer-icons">
                   <button
                     class="btn primary-btn btn-icon"
-                    onClick={()=>deleteNote(note.id)}
+                    onClick={() => deleteNote(note.id)}
                   >
                     <MdOutlineDeleteForever />
                   </button>
